@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Maison du Village - Boulangerie Pâtisserie</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #d4a762;
+            --secondary-color: #8b4513;
+            --light-color: #f8f3e9;
+            --dark-color: #333333;
+            --accent-color: #a52a2a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-img {
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.8rem;
+            margin-right: 15px;
+        }
+        
+        .logo-text h1 {
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            line-height: 1.2;
+        }
+        
+        .logo-text .tagline {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 120px 0;
+            margin-bottom: 60px;
+        }
+        
+        .hero h2 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 14px 35px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Section Styles */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--secondary-color);
+            font-size: 2.3rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background-color: var(--primary-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+        
+        /* Menu Sections */
+        .menu-section {
+            margin-bottom: 80px;
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .menu-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+        
+        .menu-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .menu-img {
+            height: 220px;
+            overflow: hidden;
+        }
+        
+        .menu-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .menu-card:hover .menu-img img {
+            transform: scale(1.05);
+        }
+        
+        .menu-info {
+            padding: 25px;
+        }
+        
+        .menu-info h3 {
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+        }
+        
+        .menu-info p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .menu-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .price {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+        }
+        
+        /* Events Section */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .event-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .event-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .event-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .event-info {
+            padding: 25px;
+        }
+        
+        .event-info h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .event-info ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .event-info ul li {
+            margin-bottom: 8px;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background-color: white;
+            padding: 80px 0;
+            margin-bottom: 60px;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+        
+        .contact-info h3 {
+            color: var(--secondary-color);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+        
+        .contact-details {
+            margin-bottom: 30px;
+        }
+        
+        .contact-details p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-details i {
+            color: var(--primary-color);
+            margin-right: 10px;
+            width: 20px;
+        }
+        
+        .opening-hours h4 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        .opening-hours table {
+            width: 100%;
+        }
+        
+        .opening-hours td {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .opening-hours td:last-child {
+            text-align: right;
+            font-weight: 600;
+        }
+        
+        .map-container {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            min-height: 400px;
+        }
+        
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #666;
+        }
+        
+        .map-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .footer-column p {
+            margin-bottom: 15px;
+            color: #ddd;
+        }
+        
+        .social-icons {
+            display: flex;
+            margin-top: 15px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .header-content {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            .logo-container {
+                margin-bottom: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px 10px;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            nav {
+                width: 100%;
+                display: none;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                margin-top: 15px;
+            }
+            
+            nav ul li {
+                margin: 0 0 15px;
+            }
+            
+            .hero {
+                padding: 80px 0;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo-img {
+                width: 60px;
+                height: 60px;
+                font-size: 1.4rem;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.4rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .menu-grid, .events-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <div class="logo-img">
+                        <span>LdV</span>
+                    </div>
+                    <div class="logo-text">
+                        <h1>Maison du Village</h1>
+                        <div class="tagline">BOULANGERIE • PÂTISSERIE</div>
+                    </div>
+                </div>
+                
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                
+                <nav id="mainNav">
+                    <ul>
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#sale">Menu Salé</a></li>
+                        <li><a href="#sucré">Menu Sucré</a></li>
+                        <li><a href="#evenements">Événements</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <div class="container">
+            <h2> Maison du Village</h2>
+            <p>Boulangerie & Pâtisserie d'exception à Vaux-en-Velin</p>
+            <p>Des produits artisanaux préparés avec passion depuis 1995</p>
+            <a href="#contact" class="btn">Nous contacter</a>
+        </div>
+    </section>
+
+    <!-- Salé Menu Section -->
+    <section class="menu-section" id="sale">
+        <div class="container">
+            <h2 class="section-title">Menu Salé</h2>
+            <p class="section-subtitle">Nos spécialités boulangères et viennoiseries salées</p>
+            
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <div class="menu-img">
+                        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80" alt="Pain traditionnel">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Pain Traditionnel</h3>
+                        <p>Notre pain signature, cuit au feu de bois avec une croûte croustillante et une mie aérée.</p>
+                        <div class="menu-price">
+                            <span class="price">2,50 €</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-card">
+                    <div class="menu-img">
+                        <img src="https://imgs.search.brave.com/PypCz0ltDEq3H1Zl0lAqQVQcR6iG5i_5VKi7tVckoyE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMuYWZjZG4uY29t/L3JlY2lwZS8yMDIy/MTAxMC8xMzU5MTVf/dzMwMGgzMDBjMS53/ZWJw" alt="Quiche Lorraine">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Quiche Lorraine</h3>
+                        <p>Quiche maison avec lardons fumés, œufs et crème fraîche, dans une pâte brisée maison.</p>
+                        <div class="menu-price">
+                            <span class="price">4,50 €</span>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="menu-card">
+                    <div class="menu-img">
+                        <img src="https://imgs.search.brave.com/gAixYGOizqC1JQtIeZMzHs4ml_-r4zjp0RHag-Exqhw/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/Y29va29taXguY29t/L3dwLWNvbnRlbnQv/dXBsb2Fkcy8yMDE3/LzA2L3BldGl0cy1w/YWluLWF1eC1yYWlz/aW5zLXRoZXJtb21p/eC5qcGc" alt="Quiche Lorraine">
+                    </div>
+                    <div class="menu-info">
+                        <h3>pain aux raisins</h3>
+                        <p>pain maison avec lardons fumés dans une pâte brisée maison.</p>
+                        <div class="menu-price">
+                            <span class="price">1,70 €</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-img">
+                        <img src="https://imgs.search.brave.com/FmYvzfyfghBkiSHFkGpCwR8-lnOlIGFnvjx-GVCDav4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA2Lzk2LzkxLzMz/LzM2MF9GXzY5Njkx/MzM0Nl9LUlhTOTlh/T3FVYmc0UndnWHVV/SWxLR0Z6Z0dmTldi/Vi5qcGc" alt="Croissants et viennoiseries">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Viennoiseries Salées</h3>
+                        <p>Croissants, pains au chocolat, et autres viennoiseries préparées avec du beurre AOP.</p>
+                        <div class="menu-price">
+                            <span class="price">1,80 €</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sucré Menu Section -->
+    <section class="menu-section" id="sucré">
+        <div class="container">
+            <h2 class="section-title">Menu Sucré</h2>
+            <p class="section-subtitle">Nos délices pâtissiers et douceurs sucrées</p>
+            
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <div class="menu-img">
+                        <img src="https://imgs.search.brave.com/soc9S5efv_jQE3P9XST5612wcpHJ_N1dlYJJsHp180U/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly91cy4x/MjNyZi5jb20vNDUw/d20vcm9tZW9tZC9y/b21lb21kMjEwMS9y/b21lb21kMjEwMTAx/MjQzLzE2MjYyNTI3/NS1lY2xhaXJzLWZy/YW4lQzMlQTdhaXMt/dHJhZGl0aW9ubmVs/cy1hdS1jaG9jb2xh/dC1kZXNzZXJ0LXNh/dm91cmV1eC1lY2xh/aXJzLWRlLWclQzMl/QTJ0ZWF1eC1mYWl0/cy1tYWlzb24uanBn/P3Zlcj02" alt="Éclairs au chocolat">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Éclairs au Chocolat</h3>
+                        <p>Pâte à choux légère garnie de crème pâtissière au chocolat et nappage brillant.</p>
+                        <div class="menu-price">
+                            <span class="price">3,50 €</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-img">
+                        <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80" alt="Tarte aux fruits">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Tarte aux Fruits de Saison</h3>
+                        <p>Tartelette avec crème pâtissière vanille et fruits frais de saison (fraise, framboise, abricot...).</p>
+                        <div class="menu-price">
+                            <span class="price">4,80 €</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-card">
+                    <div class="menu-img">
+                        <img src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80" alt="Macarons">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Macarons Assortis</h3>
+                        <p>Macarons délicats aux saveurs variées : vanille, framboise, pistache, chocolat, café.</p>
+                        <div class="menu-price">
+                            <span class="price">2,50 € l'unité</span>
+                        </div>
+                    </div>
+                </div>
+                 <div class="menu-card">
+                    <div class="menu-img">
+                        <img src="https://imgs.search.brave.com/sG3l9b_zra3csq8gBw4uRsST6yrZclrY76k3fvUtbnM/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTY4/MjU3NTY0L2ZyL3Bo/b3RvL3RhcnRlLWF1/eC1mcmFtYm9pc2Vz/LmpwZz9zPTYxMng2/MTImdz0wJms9MjAm/Yz14SXMwUVpwUC1P/dDJnOTBWYmVvemtt/U19OazZQQkxtYXBz/THVZaFhCY213PQ" alt="Quiche Lorraine">
+                    </div>
+                    <div class="menu-info">
+                        <h3>tarte aux framboise</h3>
+                        <p> tarte maison avec lardons fumés, œufs et crème fraîche, dans une pâte brisée maison.</p>
+                        <div class="menu-price">
+                            <span class="price">3,40 €</span>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="menu-section" id="evenements">
+        <div class="container">
+            <h2 class="section-title">Événements Spéciaux</h2>
+            <p class="section-subtitle">Nous créons des pâtisseries uniques pour vos moments spéciaux</p>
+            
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-img">
+                        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1469&q=80" alt="Gâteau de mariage">
+                    </div>
+                    <div class="event-info">
+                        <h3>Mariages</h3>
+                        <p>Création de gâteaux de mariage sur mesure, pièces montées et desserts d'exception pour votre grand jour.</p>
+                        <ul>
+                            <li>Gâteaux à étages personnalisés</li>
+                            <li>Pièces montées classiques ou modernes</li>
+                            <li>Desserts individuels pour vos invités</li>
+                        </ul>
+                        <a href="#contact" class="btn">Demander un devis</a>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-img">
+                        <img src="https://images.unsplash.com/photo-1532117182044-031e7cd916ee?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Gâteau d'anniversaire">
+                    </div>
+                    <div class="event-info">
+                        <h3>Anniversaires</h3>
+                        <p>Gâteaux d'anniversaire personnalisés selon vos thèmes et préférences, pour petits et grands.</p>
+                        <ul>
+                            <li>Gâteaux pour enfants (personnages, thèmes)</li>
+                            <li>Gâteaux pour adultes (élégants, sobres)</li>
+                            <li>Cupcakes et desserts individuels</li>
+                        </ul>
+                        <a href="#contact" class="btn">Commander</a>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-img">
+                        <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1468&q=80" alt="Buffet d'entreprise">
+                    </div>
+                    <div class="event-info">
+                        <h3>Événements d'entreprise</h3>
+                        <p>Buffets sucrés et salés pour vos réunions, séminaires, lancements de produits et fêtes d'entreprise.</p>
+                        <ul>
+                            <li>Plateaux de viennoiseries et pâtisseries</li>
+                            <li>Buffets salés variés</li>
+                            <li>Desserts individuels élégants</li>
+                        </ul>
+                        <a href="#contact" class="btn">Planifier un événement</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact & Horaires</h2>
+            <p class="section-subtitle">Venez nous rencontrer à notre boulangerie-pâtisserie</p>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>La Maison du Village</h3>
+                    
+                    <div class="contact-details">
+                        <p><i class="fas fa-map-marker-alt"></i> 11 Rue Victor Hugo, 69120 Vaux-en-Velin</p>
+                        <p><i class="fas fa-phone"></i> 07 82 09 28 16</p>
+                        <p><i class="fas fa-envelope"></i> Aidoudikhalli@hotmail.com</p>
+                    </div>
+                    
+                    <div class="opening-hours">
+                        <h4>Horaires d'ouverture</h4>
+                        <table>
+                            <tr>
+                                <td>Lundi</td>
+                                <td>6h00 - 21h00</td>
+                            </tr>
+                            <tr>
+                                <td>Mardi</td>
+                                <td>6h00 - 21h00</td>
+                            </tr>
+                            <tr>
+                                <td>Mercredi</td>
+                                <td>6h00 - 21h00</td>
+                            </tr>
+                            <tr>
+                                <td>Jeudi</td>
+                                <td>6h00 - 21h00</td>
+                            </tr>
+                            <tr>
+                                <td>Vendredi</td>
+                                <td>7h00 - 21h00</td>
+                            </tr>
+                            <tr>
+                                <td>Samedi</td>
+                                <td>6h00 - 21h00</td>
+                            </tr>
+                            <tr>
+                                <td>Dimanche</td>
+                                <td>6h00 - 13h00</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="map-container">
+                    <div class="map-placeholder">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <p>Carte interactive de localisation</p>
+                        <p>(Intégrez Google Maps avec l'adresse)</p>
+                        <p>11 Rue Victor Hugo, Vaux-en-Velin</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>La Maison du Village</h3>
+                    <p>Boulangerie-Pâtisserie artisanale depuis 1995. Nous nous engageons à utiliser des ingrédients de qualité pour créer des produits exceptionnels.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Navigation</h3>
+                    <p><a href="#accueil" style="color: #0a0606; text-decoration: none;">Accueil</a></p>
+                    <p><a href="#sale" style="color: #0a0606; text-decoration: none;">Menu Salé</a></p>
+                    <p><a href="#sucré" style="color: #0a0606; text-decoration: none;">Menu Sucré</a></p>
+                    <p><a href="#evenements" style="color: #0a0606; text-decoration: none;">Événements</a></p>
+                    <p><a href="#contact" style="color: #0a0606; text-decoration: none;">Contact</a></p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Domaine & Hébergement</h3>
+                    <p>Nom de domaine proposé:</p>
+                    <p style="font-weight: bold; color: var(--primary-color);">Lamaison-duvillage.com</p>
+                    <p>Hébergement professionnel recommandé pour une performance optimale du site.</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2023 La Maison du Village - Boulangerie Pâtisserie. Tous droits réservés.</p>
+                <p>Site conçu pour une compatibilité mobile et tablette (responsive design)</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu toggle for mobile
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('mainNav').classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a link (for mobile)
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('mainNav').classList.remove('active');
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add current year to copyright
+        document.addEventListener('DOMContentLoaded', function() {
+            const year = new Date().getFullYear();
+            const copyrightText = document.querySelector('.copyright p');
+            if (copyrightText) {
+                copyrightText.innerHTML = copyrightText.innerHTML.replace('2023', year);
+            }
+        });
+    </script>
+</body>
+</html>
